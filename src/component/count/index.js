@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import myStore from '../../redux/store'
+import { createAddAction, createSubAction } from '../../redux/count_action'
 
 export default class Count extends Component {
     componentDidMount() {
@@ -8,39 +9,28 @@ export default class Count extends Component {
 
     handleAdd = () => {
         const selectNub = this.selectNub.value * 1
-        myStore.dispatch({
-            type: 'add',
-            num: selectNub
-        })
+        myStore.dispatch(createAddAction(selectNub))
     }
 
     handleSub = () => {
         const selectNub = this.selectNub.value * 1
-        myStore.dispatch({
-            type: 'sub',
-            num: selectNub
-        })
+        myStore.dispatch(createSubAction(selectNub))
     }
 
     handleAddIfOdd = () => {
         const selectNub = this.selectNub.value * 1
         if (myStore.getState() % 2 !== 0) {
-            myStore.dispatch({
-                type: 'add',
-                num: selectNub
-            })
+            myStore.dispatch(createAddAction(selectNub))
         }
     }
 
     handleAutoAdd = () => {
         const selectNub = this.selectNub.value * 1
         setTimeout(() => {
-            myStore.dispatch({
-                type: 'add',
-                num: selectNub
-            })
+            myStore.dispatch(createAddAction(selectNub))
         }, 1000);
     }
+    
     render() {
         return (
             <div>
