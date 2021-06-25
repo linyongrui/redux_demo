@@ -1,50 +1,41 @@
 import React, { Component } from 'react'
-import myStore from '../../redux/store'
 
 export default class Count extends Component {
-    componentDidMount() {
-        myStore.subscribe(() => { this.setState({}) })
+    state = {
+        count: 0
     }
 
     handleAdd = () => {
+        const { count } = this.state
         const selectNub = this.selectNub.value * 1
-        myStore.dispatch({
-            type: 'add',
-            num: selectNub
-        })
+        this.setState({ count: count + selectNub })
     }
 
     handleSub = () => {
+        const { count } = this.state
         const selectNub = this.selectNub.value * 1
-        myStore.dispatch({
-            type: 'sub',
-            num: selectNub
-        })
+        this.setState({ count: count - selectNub })
     }
 
     handleAddIfOdd = () => {
+        const { count } = this.state
         const selectNub = this.selectNub.value * 1
-        if (myStore.getState() % 2 !== 0) {
-            myStore.dispatch({
-                type: 'add',
-                num: selectNub
-            })
+        if (count % 2 !== 0) {
+            this.setState({ count: count + selectNub })
         }
     }
 
     handleAutoAdd = () => {
+        const { count } = this.state
         const selectNub = this.selectNub.value * 1
         setTimeout(() => {
-            myStore.dispatch({
-                type: 'add',
-                num: selectNub
-            })
+            this.setState({ count: count + selectNub })
         }, 1000);
     }
     render() {
         return (
             <div>
-                <h2>当前和：{myStore.getState()}</h2>
+                <h2>当前和：{this.state.count}</h2>
                 <select ref={s => this.selectNub = s}>
                     <option>1</option>
                     <option>2</option>
