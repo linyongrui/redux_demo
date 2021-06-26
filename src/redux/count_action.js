@@ -5,3 +5,11 @@ export const createAddAction = num => {
 }
 
 export const createSubAction = num => ({ type: SUB, num })
+
+export const createAutoAddAction = (num, time) => {
+    return (dispatch) => {
+        setTimeout(() => {
+            dispatch(createAddAction(num))
+        }, time);
+    }
+}
