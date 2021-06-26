@@ -1,11 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import countRudcer from './reducers/count'
-import personRudcer from './reducers/person'
+import {allRucers} from './reducers'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 
-const allRucers = combineReducers({
-    sum: countRudcer,
-    persons: personRudcer
-})
-export default createStore(allRucers, applyMiddleware(thunk))
+export default createStore(allRucers, composeWithDevTools(applyMiddleware(thunk)))

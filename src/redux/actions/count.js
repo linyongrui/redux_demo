@@ -1,15 +1,15 @@
 import { ADD, SUB } from '../constant'
 
-export const createAddAction = num => {
+export const add = num => {
     return { type: ADD, num }
 }
 
-export const createSubAction = num => ({ type: SUB, num })
+export const sub = num => ({ type: SUB, num })
 
-export const createAutoAddAction = (num, time) => {
+export const autoAdd = (num, time) => {
     return (dispatch) => {
         setTimeout(() => {
-            dispatch(createAddAction(num))
+            dispatch(add(num))
         }, time);
     }
 }

@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { add, sub, autoAdd } from '../../redux/actions/count'
+import { createAddAction, createSubAction, createAutoAddAction } from '../../redux/actions/count'
 
 class Count extends Component {
 
@@ -48,9 +48,9 @@ class Count extends Component {
 export default connect(
     state => ({ count: state.sum, personSize: state.persons.length }),
     {
-        add,
-        sub,
-        autoAdd
+        add: createAddAction,
+        sub: createSubAction,
+        autoAdd: createAutoAddAction
     }
 
 )(Count)
