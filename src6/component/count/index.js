@@ -1,8 +1,6 @@
-import { Component } from 'react'
-import { connect } from 'react-redux'
-import { createAddAction, createSubAction, createAutoAddAction } from '../../redux/actions/count'
+import React, { Component } from 'react'
 
-class Count extends Component {
+export default class Count extends Component {
 
     handleAdd = () => {
         const selectNub = this.selectNub.value * 1
@@ -29,8 +27,7 @@ class Count extends Component {
     render() {
         return (
             <div>
-                <h2>我是Count组件，Person组件的总人数为{this.props.personSize}</h2>
-                <h4>当前和：{this.props.count}</h4>
+                <h2>当前和：{this.props.count}</h2>
                 <select ref={s => this.selectNub = s}>
                     <option>1</option>
                     <option>2</option>
@@ -44,13 +41,3 @@ class Count extends Component {
         )
     }
 }
-
-export default connect(
-    state => ({ count: state.sum, personSize: state.persons.length }),
-    {
-        add: createAddAction,
-        sub: createSubAction,
-        autoAdd: createAutoAddAction
-    }
-
-)(Count)
