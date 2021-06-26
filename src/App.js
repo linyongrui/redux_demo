@@ -1,11 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
 
-import Count from './component/count'
+import Count from './containers/count'
+import store from './redux/store';
 
 function App() {
+
   return (
-    <Count></Count>
+    <Count store={store} />
   );
 }
 
